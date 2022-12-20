@@ -6,6 +6,7 @@ const Btn = styled.button`
 	min-width: 130px;
 	border: 1px solid purple;
 	background-color: #fff;
+	cursor: pointer;
 `;
 
 function Button({ buttonText, onClick }) {
@@ -15,5 +16,5 @@ export default Button;
 
 Button.propTypes = {
 	buttonText: PropTypes.string.isRequired,
-	onClick: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 };

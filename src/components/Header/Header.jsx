@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Button from '../../common/Button/Button';
 import Logo from './components/Logo/Logo';
 
-const Flex = styled.div`
+export const Flex = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
