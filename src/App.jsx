@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import Courses from './components/Courses/Courses';
 import Header from './components/Header/Header';
 
 const Global = createGlobalStyle`
@@ -14,6 +15,7 @@ function App() {
 		<>
 			<Global />
 			<Header></Header>
+			<Courses></Courses>
 		</>
 	);
 }

@@ -5,11 +5,8 @@ import { Flex } from '../../../Header/Header';
 function SearchBar() {
 	return (
 		<Flex>
-			<Flex>
-				<Input placeholderText='Enter course name or id...'></Input>
-				<Button buttonText='Search'></Button>
-			</Flex>
-			<Button buttonText='Add new course'></Button>
+			<Input placeholderText='Enter course name or id...'></Input>
+			<Button buttonText='Search'></Button>
 		</Flex>
 	);
 }

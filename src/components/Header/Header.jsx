@@ -9,7 +9,7 @@ export const Flex = styled.div`
 `;
 
 const StyledHeader = styled(Flex)`
-	padding: 15px;
+	padding: 20px;
 	border: 2px solid red;
 `;
 

@@ -8,13 +8,15 @@ import { renderAuthors } from '../../../../helpers/getAuthorsList';
 const StyledCourseCard = styled(Flex)`
 	padding: 15px;
 	border: 2px solid green;
+	margin-top: 20px;
+	justify-content: start;
 `;
 const StyledRightDiv = styled.div`
-	width: 45vw;
 	padding-right: 50px;
 `;
 const StyledLeftDiv = styled.div`
 	padding-right: 50px;
+	width: 75%;
 `;
 const StyledBtn = styled(Flex)`
 	margin-top: 10px;
