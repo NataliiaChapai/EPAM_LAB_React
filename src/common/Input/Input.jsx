@@ -5,6 +5,7 @@ const StyledInput = styled.input`
 	padding: 5px;
 	min-width: 30vw;
 	border: 1px solid orange;
+	margin-right: 10px;
 `;
 
 function Input({ labelText, placeholderText, onChange }) {
