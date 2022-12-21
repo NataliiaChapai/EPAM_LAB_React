@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../common/Button/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Flex } from '../Header/Header';
 import CourseCard from './components/CourseCard/CourseCard';
@@ -15,7 +15,6 @@ const StyledCourses = styled.div`
 function Courses() {
 	const [query, setQuery] = useState('');
 	const [search, setSearch] = useState('');
-	let searchCourse;
 
 	const handleInputChange = (event) => {
 		const { value } = event.currentTarget;
@@ -24,19 +23,20 @@ function Courses() {
 
 	const handleClick = (event) => {
 		event.preventDefault();
-		if (query.trim() === '') {
-			return;
-		}
 		setSearch(query.toLowerCase());
 	};
 
-	query
-		? (searchCourse = mockedCoursesList.filter(
-				(course) =>
-					course.title.toLowerCase().includes(search) ||
-					course.id.toLowerCase().includes(search)
-		  ))
-		: (searchCourse = mockedCoursesList);
+	const searchCourse = mockedCoursesList.filter(
+		(course) =>
+			course.title.toLowerCase().includes(search) ||
+			course.id.toLowerCase().includes(search)
+	);
+
+	useEffect(() => {
+		if (!query) {
+			setSearch('');
+		}
+	}, [query]);
 
 	return (
 		<StyledCourses>
