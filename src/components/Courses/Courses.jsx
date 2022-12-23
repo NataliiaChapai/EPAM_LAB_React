@@ -5,7 +5,7 @@ import { CourseCard, SearchBar } from './components';
 import { mockedCoursesList } from './mockedCoursesList';
 
 import { Flex } from '../Header/Header.styled';
-import { StyledCourses } from './Courses.styled';
+import { StyledContainer } from './Courses.styled';
 
 export const Courses = () => {
 	const [query, setQuery] = useState('');
@@ -34,7 +34,7 @@ export const Courses = () => {
 	}, [query]);
 
 	return (
-		<StyledCourses>
+		<StyledContainer>
 			<Flex>
 				<SearchBar
 					value={query}
@@ -48,6 +48,6 @@ export const Courses = () => {
 					<CourseCard key={course.id} courseItem={course}></CourseCard>
 				))}
 			</ul>
-		</StyledCourses>
+		</StyledContainer>
 	);
 };

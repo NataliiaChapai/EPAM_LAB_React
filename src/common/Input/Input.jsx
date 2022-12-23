@@ -4,11 +4,11 @@ import { StyledInput } from './Input.styled';
 
 export const Input = ({ labelText, placeholderText, onChange }) => (
 	<label>
+		{labelText}
 		<StyledInput
 			placeholder={placeholderText}
 			onChange={onChange}
 		></StyledInput>
-		{labelText}
 	</label>
 );
 

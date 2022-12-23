@@ -1,4 +1,5 @@
 import { Courses, Header } from './components';
+import { CreateCourse } from './components/CreateCourse/CreateCourse';
 
 import { Global } from './Global.styled';
 
@@ -8,6 +9,7 @@ function App() {
 			<Global />
 			<Header></Header>
 			<Courses></Courses>
+			<CreateCourse></CreateCourse>
 		</>
 	);
 }
