@@ -1,18 +1,13 @@
-import styled from 'styled-components';
-import Button from '../../common/Button/Button';
 import { useEffect, useState } from 'react';
 
-import { Flex } from '../Header/Header';
-import CourseCard from './components/CourseCard/CourseCard';
-import SearchBar from './components/SearchBar/SearchBar';
+import { Button } from '../../common';
+import { CourseCard, SearchBar } from './components';
 import { mockedCoursesList } from './mockedCoursesList';
 
-const StyledCourses = styled.div`
-	padding: 20px;
-	border: 2px solid blue;
-`;
+import { Flex } from '../Header/Header.styled';
+import { StyledCourses } from './Courses.styled';
 
-function Courses() {
+export const Courses = () => {
 	const [query, setQuery] = useState('');
 	const [search, setSearch] = useState('');
 
@@ -55,5 +50,4 @@ function Courses() {
 			</ul>
 		</StyledCourses>
 	);
-}
-export default Courses;
+};

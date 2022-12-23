@@ -1,32 +1,14 @@
-import styled from 'styled-components';
-import Button from '../../common/Button/Button';
-import Logo from './components/Logo/Logo';
+import { Button } from '../../common';
+import { Logo } from './components/Logo';
 
-export const Flex = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-`;
+import { StyledHeader, Flex, Name } from './Header.styled';
 
-const StyledHeader = styled(Flex)`
-	padding: 20px;
-	border: 2px solid red;
-`;
-
-const Name = styled.span`
-	margin-right: 30px;
-	font-size: 18px;
-`;
-
-function Header() {
-	return (
-		<StyledHeader>
-			<Logo></Logo>
-			<Flex>
-				<Name>Dave</Name>
-				<Button buttonText='Logout'></Button>
-			</Flex>
-		</StyledHeader>
-	);
-}
-export default Header;
+export const Header = () => (
+	<StyledHeader>
+		<Logo></Logo>
+		<Flex>
+			<Name>Dave</Name>
+			<Button buttonText='Logout'></Button>
+		</Flex>
+	</StyledHeader>
+);
