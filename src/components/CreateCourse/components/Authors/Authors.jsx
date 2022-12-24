@@ -1,16 +1,18 @@
 import { Button } from '../../../../common';
 import { mockedAuthorsList } from '../../../Courses/mockedAuthorsList';
+import { StyledFlexCenterItem } from '../AddAuthor/AddAuthor.styled';
+import { StyledSpan, StyledUl, StyledLi } from './Authors.styled';
 
 export const Authors = () => (
-	<div>
+	<StyledFlexCenterItem>
 		<h3>Authors</h3>
-		<ul>
+		<StyledUl>
 			{mockedAuthorsList.map((author) => (
-				<li key={author.id}>
-					<p>{author.name}</p>
+				<StyledLi key={author.id}>
+					<StyledSpan>{author.name}</StyledSpan>
 					<Button buttonText='Add author'></Button>
-				</li>
+				</StyledLi>
 			))}
-		</ul>
-	</div>
+		</StyledUl>
+	</StyledFlexCenterItem>
 );

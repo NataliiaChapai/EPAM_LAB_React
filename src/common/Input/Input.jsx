@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 
-import { StyledInput } from './Input.styled';
+import { Label, StyledInput } from './Input.styled';
 
 export const Input = ({ labelText, placeholderText, onChange }) => (
-	<label>
+	<Label>
 		{labelText}
 		<StyledInput
 			placeholder={placeholderText}
 			onChange={onChange}
 		></StyledInput>
-	</label>
+	</Label>
 );
 
 Input.propTypes = {

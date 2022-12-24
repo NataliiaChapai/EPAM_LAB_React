@@ -1,8 +1,11 @@
+import { Label } from '../../../../common/Input/Input.styled';
+import { StyledDescription, StyledTextarea } from './Description.styled';
+
 export const Description = () => (
-	<div>
-		<label>
+	<StyledDescription>
+		<Label>
 			Description
-			<textarea placeholder='Enter description'></textarea>
-		</label>
-	</div>
+			<StyledTextarea placeholder='Enter description'></StyledTextarea>
+		</Label>
+	</StyledDescription>
 );

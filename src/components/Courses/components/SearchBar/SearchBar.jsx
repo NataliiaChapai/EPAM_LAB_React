@@ -1,9 +1,9 @@
 import { Button, Input } from '../../../../common';
 
-import { Flex } from '../../../Header/Header.styled';
+import { StyledFlex } from '../../../Header/Header.styled';
 
 export const SearchBar = ({ query, onHandleInputChange, onHandleClick }) => (
-	<Flex>
+	<StyledFlex>
 		<Input
 			type='text'
 			name='search'
@@ -12,5 +12,5 @@ export const SearchBar = ({ query, onHandleInputChange, onHandleClick }) => (
 			onChange={onHandleInputChange}
 		></Input>
 		<Button buttonText='Search' onClick={onHandleClick}></Button>
-	</Flex>
+	</StyledFlex>
 );

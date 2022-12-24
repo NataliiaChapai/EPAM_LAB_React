@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Flex } from '../../../Header/Header.styled';
+import { StyledFlex } from '../../../Header/Header.styled';
 
-export const StyledCourseCard = styled(Flex)`
+export const StyledCourseCard = styled(StyledFlex)`
 	padding: 15px;
 	border: 2px solid green;
 	margin-top: 20px;
@@ -14,7 +14,7 @@ export const StyledLeftDiv = styled.div`
 	padding-right: 50px;
 	width: 75%;
 `;
-export const StyledBtn = styled(Flex)`
+export const StyledBtn = styled(StyledFlex)`
 	margin-top: 10px;
 	justify-content: center;
 `;

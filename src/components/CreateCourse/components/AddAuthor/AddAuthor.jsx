@@ -1,12 +1,16 @@
 import { Input, Button } from '../../../../common';
+import { StyledFlexCenterItem, StyledFlexLeftItem } from './AddAuthor.styled';
 
 export const AddAuthor = () => (
-	<div>
+	<StyledFlexCenterItem>
 		<h3>Add authors</h3>
-		<Input
-			labelText='Author name'
-			placeholderText='Enter author name...'
-		></Input>
+		<StyledFlexLeftItem>
+			<Input
+				labelText='Author name'
+				placeholderText='Enter author name...'
+			></Input>
+		</StyledFlexLeftItem>
+
 		<Button buttonText='Create author'></Button>
-	</div>
+	</StyledFlexCenterItem>
 );

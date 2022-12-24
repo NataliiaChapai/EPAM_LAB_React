@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const Flex = styled.div`
+export const StyledFlex = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 `;
 
-export const StyledHeader = styled(Flex)`
+export const StyledHeader = styled(StyledFlex)`
 	padding: 20px;
 	border: 2px solid red;
 `;

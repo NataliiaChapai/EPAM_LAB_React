@@ -4,7 +4,7 @@ import { Button } from '../../common';
 import { CourseCard, SearchBar } from './components';
 import { mockedCoursesList } from './mockedCoursesList';
 
-import { Flex } from '../Header/Header.styled';
+import { StyledFlex } from '../Header/Header.styled';
 import { StyledContainer } from './Courses.styled';
 
 export const Courses = () => {
@@ -35,14 +35,14 @@ export const Courses = () => {
 
 	return (
 		<StyledContainer>
-			<Flex>
+			<StyledFlex>
 				<SearchBar
 					value={query}
 					onHandleClick={handleClick}
 					onHandleInputChange={handleInputChange}
 				></SearchBar>
 				<Button buttonText='Add new course'></Button>
-			</Flex>
+			</StyledFlex>
 			<ul>
 				{searchCourse.map((course) => (
 					<CourseCard key={course.id} courseItem={course}></CourseCard>

@@ -1,14 +1,14 @@
 import { Button } from '../../common';
 import { Logo } from './components/Logo';
 
-import { StyledHeader, Flex, Name } from './Header.styled';
+import { StyledHeader, StyledFlex, Name } from './Header.styled';
 
 export const Header = () => (
 	<StyledHeader>
 		<Logo></Logo>
-		<Flex>
+		<StyledFlex>
 			<Name>Dave</Name>
 			<Button buttonText='Logout'></Button>
-		</Flex>
+		</StyledFlex>
 	</StyledHeader>
 );

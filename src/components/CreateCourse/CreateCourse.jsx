@@ -4,6 +4,7 @@ import { Title } from './components/Title';
 import { Description } from './components/Description';
 
 import { StyledContainer } from '../Courses/Courses.styled';
+import { StyledWrapFlex } from './CreateCourse.styled';
 import { CourseAuthors } from './components/CourseAuthors';
 import { Authors } from './components/Authors';
 import { Duration } from './components/Duration';
@@ -22,7 +23,7 @@ export const CreateCourse = ({ courseItem }) => {
 		<StyledContainer>
 			<Title></Title>
 			<Description></Description>
-			<div>
+			<StyledWrapFlex>
 				<AddAuthor></AddAuthor>
 				<Authors></Authors>
 				<Duration
@@ -30,7 +31,7 @@ export const CreateCourse = ({ courseItem }) => {
 					duration={duration}
 				></Duration>
 				<CourseAuthors courseAuthors={courseAuthors}></CourseAuthors>
-			</div>
+			</StyledWrapFlex>
 		</StyledContainer>
 	);
 };
