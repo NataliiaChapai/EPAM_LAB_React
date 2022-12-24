@@ -7,7 +7,7 @@ import { mockedCoursesList } from './mockedCoursesList';
 import { StyledFlex } from '../Header/Header.styled';
 import { StyledContainer } from './Courses.styled';
 
-export const Courses = () => {
+export const Courses = ({ onHandleClick }) => {
 	const [query, setQuery] = useState('');
 	const [search, setSearch] = useState('');
 
@@ -41,7 +41,7 @@ export const Courses = () => {
 					onHandleClick={handleClick}
 					onHandleInputChange={handleInputChange}
 				></SearchBar>
-				<Button buttonText='Add new course'></Button>
+				<Button onClick={onHandleClick} buttonText='Add new course'></Button>
 			</StyledFlex>
 			<ul>
 				{searchCourse.map((course) => (
