@@ -3,7 +3,7 @@ import {
 	StyledFlexCenterItem,
 	StyledFlexLeftItem,
 } from '../AddAuthor/AddAuthor.styled';
-import { StyledLi, StyledUl } from '../Authors/Authors.styled';
+import { StyledLi, StyledUl, StyledSpan } from '../Authors/Authors.styled';
 import { StyledP } from './CourseAuthors.styled';
 
 export const CourseAuthors = ({ courseAuthors }) => (
@@ -12,11 +12,11 @@ export const CourseAuthors = ({ courseAuthors }) => (
 		{courseAuthors.length > 0 ? (
 			<StyledFlexLeftItem>
 				<StyledUl>
-					{courseAuthors.map((author) => (
-						<>
-							<StyledLi>{author.name}</StyledLi>
+					{courseAuthors.map(({ name, id }) => (
+						<StyledLi key={id}>
+							<StyledSpan>{name}</StyledSpan>
 							<Button buttonText='Delete'></Button>
-						</>
+						</StyledLi>
 					))}
 				</StyledUl>
 			</StyledFlexLeftItem>

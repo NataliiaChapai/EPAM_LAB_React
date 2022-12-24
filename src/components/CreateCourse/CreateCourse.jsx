@@ -9,14 +9,25 @@ import { CourseAuthors } from './components/CourseAuthors';
 import { Authors } from './components/Authors';
 import { Duration } from './components/Duration';
 import { AddAuthor } from './components/AddAuthor';
+import { mockedAuthorsList } from '../Courses/mockedAuthorsList';
 
 export const CreateCourse = ({ courseItem }) => {
 	const [duration, setDuration] = useState('0');
-	let courseAuthors = [];
+	const [authorsList, setAuthorsList] = useState(mockedAuthorsList);
+	const [courseAuthors, setCourseAuthors] = useState([]);
 
 	const handleDurationChange = (event) => {
 		const { value } = event.currentTarget;
 		setDuration(value);
+	};
+
+	const addAuthor = (authorId) => {
+		const author = authorsList.find((a) => a.id === authorId);
+		setCourseAuthors((prev) => [...prev, author]);
+		const updatedAuhtorList = authorsList.filter(
+			(author) => author.id !== authorId
+		);
+		setAuthorsList(updatedAuhtorList);
 	};
 
 	return (
@@ -25,7 +36,10 @@ export const CreateCourse = ({ courseItem }) => {
 			<Description></Description>
 			<StyledWrapFlex>
 				<AddAuthor></AddAuthor>
-				<Authors></Authors>
+				<Authors
+					authorsList={authorsList}
+					onAddAuthorBtnClick={addAuthor}
+				></Authors>
 				<Duration
 					onChange={handleDurationChange}
 					duration={duration}
