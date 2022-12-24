@@ -30,6 +30,15 @@ export const CreateCourse = ({ courseItem }) => {
 		setAuthorsList(updatedAuhtorList);
 	};
 
+	const deleteAuthor = (authorId) => {
+		const author = courseAuthors.find((a) => a.id === authorId);
+		const updatedCourseList = courseAuthors.filter(
+			(author) => author.id !== authorId
+		);
+		setCourseAuthors(updatedCourseList);
+		setAuthorsList((prev) => [...prev, author]);
+	};
+
 	return (
 		<StyledContainer>
 			<Title></Title>
@@ -44,7 +53,10 @@ export const CreateCourse = ({ courseItem }) => {
 					onChange={handleDurationChange}
 					duration={duration}
 				></Duration>
-				<CourseAuthors courseAuthors={courseAuthors}></CourseAuthors>
+				<CourseAuthors
+					courseAuthors={courseAuthors}
+					onDeleteAuthorBtnClick={deleteAuthor}
+				></CourseAuthors>
 			</StyledWrapFlex>
 		</StyledContainer>
 	);

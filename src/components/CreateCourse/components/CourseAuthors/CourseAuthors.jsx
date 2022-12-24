@@ -6,7 +6,7 @@ import {
 import { StyledLi, StyledUl, StyledSpan } from '../Authors/Authors.styled';
 import { StyledP } from './CourseAuthors.styled';
 
-export const CourseAuthors = ({ courseAuthors }) => (
+export const CourseAuthors = ({ courseAuthors, onDeleteAuthorBtnClick }) => (
 	<StyledFlexCenterItem>
 		<h3>Course authors</h3>
 		{courseAuthors.length > 0 ? (
@@ -15,7 +15,10 @@ export const CourseAuthors = ({ courseAuthors }) => (
 					{courseAuthors.map(({ name, id }) => (
 						<StyledLi key={id}>
 							<StyledSpan>{name}</StyledSpan>
-							<Button buttonText='Delete'></Button>
+							<Button
+								buttonText='Delete'
+								onClick={() => onDeleteAuthorBtnClick(id)}
+							></Button>
 						</StyledLi>
 					))}
 				</StyledUl>
