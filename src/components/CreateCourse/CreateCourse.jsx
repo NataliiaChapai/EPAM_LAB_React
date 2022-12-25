@@ -2,23 +2,27 @@ import { useState } from 'react';
 
 import { Title } from './components/Title';
 import { Description } from './components/Description';
-
-import { StyledContainer } from '../Courses/Courses.styled';
-import { StyledWrapFlex } from './CreateCourse.styled';
 import { CourseAuthors } from './components/CourseAuthors';
 import { Authors } from './components/Authors';
 import { Duration } from './components/Duration';
 import { AddAuthor } from './components/AddAuthor';
 import { mockedAuthorsList } from '../Courses/mockedAuthorsList';
+import { Button } from '../../common';
 
-export const CreateCourse = ({ courseItem }) => {
+import { StyledContainer } from '../Courses/Courses.styled';
+import { StyledWrapFlex } from './CreateCourse.styled';
+import { StyledFlex } from '../Header/Header.styled';
+
+export const CreateCourse = ({ onHandleClick }) => {
 	const [duration, setDuration] = useState('0');
 	const [authorsList, setAuthorsList] = useState(mockedAuthorsList);
 	const [courseAuthors, setCourseAuthors] = useState([]);
 
-	const handleDurationChange = (event) => {
-		const { value } = event.currentTarget;
-		setDuration(value);
+	const createAuthor = (author) => {
+		console.log(author);
+		setAuthorsList((prev) => [...prev, author]);
+		mockedAuthorsList.push(author);
+		console.log(mockedAuthorsList);
 	};
 
 	const addAuthor = (authorId) => {
@@ -28,6 +32,11 @@ export const CreateCourse = ({ courseItem }) => {
 			(author) => author.id !== authorId
 		);
 		setAuthorsList(updatedAuhtorList);
+	};
+
+	const addDuration = (event) => {
+		const { value } = event.currentTarget;
+		setDuration(value);
 	};
 
 	const deleteAuthor = (authorId) => {
@@ -41,18 +50,18 @@ export const CreateCourse = ({ courseItem }) => {
 
 	return (
 		<StyledContainer>
-			<Title></Title>
+			<StyledFlex>
+				<Title></Title>
+				<Button buttonText='Create course' onClick={onHandleClick}></Button>
+			</StyledFlex>
 			<Description></Description>
 			<StyledWrapFlex>
-				<AddAuthor></AddAuthor>
+				<AddAuthor onCreateAuthorBtnClick={createAuthor}></AddAuthor>
 				<Authors
 					authorsList={authorsList}
 					onAddAuthorBtnClick={addAuthor}
 				></Authors>
-				<Duration
-					onChange={handleDurationChange}
-					duration={duration}
-				></Duration>
+				<Duration duration={duration} onChange={addDuration}></Duration>
 				<CourseAuthors
 					courseAuthors={courseAuthors}
 					onDeleteAuthorBtnClick={deleteAuthor}

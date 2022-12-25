@@ -7,7 +7,11 @@ import { Global } from './Global.styled';
 function App() {
 	const [isCoursesList, setIsCoursesList] = useState(true);
 
-	const handleClick = () => {
+	const addNewCourse = () => {
+		setIsCoursesList(!isCoursesList);
+	};
+
+	const createCourse = () => {
 		setIsCoursesList(!isCoursesList);
 	};
 
@@ -16,9 +20,9 @@ function App() {
 			<Global />
 			<Header></Header>
 			{isCoursesList ? (
-				<Courses onHandleClick={handleClick}></Courses>
+				<Courses onHandleClick={addNewCourse}></Courses>
 			) : (
-				<CreateCourse></CreateCourse>
+				<CreateCourse onHandleClick={createCourse}></CreateCourse>
 			)}
 		</>
 	);

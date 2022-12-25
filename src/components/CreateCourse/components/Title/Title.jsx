@@ -1,10 +1,5 @@
-import { Input, Button } from '../../../../common';
-
-import { StyledFlex } from '../../../Header/Header.styled';
+import { Input } from '../../../../common';
 
 export const Title = () => (
-	<StyledFlex>
-		<Input labelText='Title' placeholderText='Enter title...'></Input>
-		<Button buttonText='Create course'></Button>
-	</StyledFlex>
+	<Input labelText='Title' placeholderText='Enter title...'></Input>
 );
