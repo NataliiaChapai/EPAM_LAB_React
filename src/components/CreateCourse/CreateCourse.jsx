@@ -19,7 +19,7 @@ import { dateGenerator } from '../../helpers/dateGenerator';
 export const CreateCourse = ({ onHandleClick }) => {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
-	const [duration, setDuration] = useState('0');
+	const [duration, setDuration] = useState(0);
 	const [authorsList, setAuthorsList] = useState(mockedAuthorsList);
 	const [courseAuthors, setCourseAuthors] = useState([]);
 
@@ -58,7 +58,7 @@ export const CreateCourse = ({ onHandleClick }) => {
 
 	const addDuration = (event) => {
 		const { value: duration } = event.currentTarget;
-		setDuration(duration);
+		setDuration(Number(duration));
 	};
 
 	const deleteAuthor = (authorId) => {
@@ -99,6 +99,6 @@ export const CreateCourse = ({ onHandleClick }) => {
 	);
 };
 
-Duration.propTypes = {
+CreateCourse.propTypes = {
 	onHandleClick: PropTypes.func.isRequired,
 };
