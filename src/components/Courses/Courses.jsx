@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 
 import { Button } from '../../common';
 import { CourseCard, SearchBar } from './components';
-import { mockedCoursesList } from './mockedCoursesList';
 
 import { StyledFlex } from '../Header/Header.styled';
 import { StyledContainer } from './Courses.styled';
 
-export const Courses = ({ onHandleClick }) => {
+export const Courses = ({ courses, onHandleClick }) => {
 	const [query, setQuery] = useState('');
 	const [search, setSearch] = useState('');
 
@@ -21,7 +20,7 @@ export const Courses = ({ onHandleClick }) => {
 		setSearch(query.toLowerCase());
 	};
 
-	const searchCourse = mockedCoursesList.filter(
+	const searchCourse = courses.filter(
 		(course) =>
 			course.title.toLowerCase().includes(search) ||
 			course.id.toLowerCase().includes(search)

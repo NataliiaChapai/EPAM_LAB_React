@@ -12,21 +12,30 @@ export const AddAuthor = ({ onCreateAuthorBtnClick }) => {
 		setAuthor(value);
 	};
 
+	const handleClick = (event) => {
+		event.preventDefault();
+		if (author.length < 2) {
+			alert('Author name length should be at least 2 characters');
+			return;
+		} else {
+			onCreateAuthorBtnClick({ id: uuidv4(), name: author });
+		}
+	};
+
 	return (
 		<StyledFlexCenterItem>
 			<h3>Add author</h3>
 			<StyledFlexLeftItem>
 				<Input
+					minLength='2'
 					labelText='Author name'
 					placeholderText='Enter author name...'
 					onChange={handleInputChange}
+					value={author}
 				></Input>
 			</StyledFlexLeftItem>
 
-			<Button
-				buttonText='Create author'
-				onClick={() => onCreateAuthorBtnClick({ id: uuidv4(), name: author })}
-			></Button>
+			<Button buttonText='Create author' onClick={handleClick}></Button>
 		</StyledFlexCenterItem>
 	);
 };

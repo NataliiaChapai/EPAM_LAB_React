@@ -9,6 +9,7 @@ export const StyledCourseCard = styled(StyledFlex)`
 `;
 export const StyledRightDiv = styled.div`
 	padding-right: 50px;
+	width: 25%;
 `;
 export const StyledLeftDiv = styled.div`
 	padding-right: 50px;

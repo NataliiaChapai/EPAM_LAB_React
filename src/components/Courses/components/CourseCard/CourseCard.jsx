@@ -30,7 +30,7 @@ export const CourseCard = ({ courseItem }) => (
 			</StyledText>
 			<StyledText>
 				<StyledSpan>Created: </StyledSpan>
-				{dateGenerator(courseItem.creationDate)}
+				{dateGenerator(courseItem.creationDate, 'dd.mm.yyyy')}
 			</StyledText>
 			<StyledBtn>
 				<Button buttonText='Show course'></Button>
