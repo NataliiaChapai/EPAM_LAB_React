@@ -1,4 +1,6 @@
 import { Button } from '../../../../common';
+import PropTypes from 'prop-types';
+
 import {
 	StyledFlexCenterItem,
 	StyledFlexLeftItem,
@@ -28,3 +30,13 @@ export const CourseAuthors = ({ courseAuthors, onDeleteAuthorBtnClick }) => (
 		)}
 	</StyledFlexCenterItem>
 );
+
+CourseAuthors.propTypes = {
+	onDeleteAuthorBtnClick: PropTypes.func.isRequired,
+	courseAuthors: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string.isRequired,
+			name: PropTypes.string.isRequired,
+		})
+	).isRequired,
+};

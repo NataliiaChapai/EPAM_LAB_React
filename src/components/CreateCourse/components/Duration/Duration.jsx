@@ -1,4 +1,6 @@
 import { Input } from '../../../../common';
+import PropTypes from 'prop-types';
+
 import { pipeDuration } from '../../../../helpers/pipeDuration';
 
 import {
@@ -23,4 +25,9 @@ export const Duration = ({ duration, onAddDuration }) => {
 			</StyledFlexLeftItem>
 		</StyledFlexCenterItem>
 	);
+};
+
+Duration.propTypes = {
+	duration: PropTypes.number.isRequired,
+	onAddDuration: PropTypes.func.isRequired,
 };

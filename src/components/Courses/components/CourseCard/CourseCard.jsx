@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Button } from '../../../../common';
 import { dateGenerator } from '../../../../helpers/dateGenerator';
 import { pipeDuration } from '../../../../helpers/pipeDuration';
@@ -38,3 +40,14 @@ export const CourseCard = ({ courseItem }) => (
 		</StyledRightDiv>
 	</StyledCourseCard>
 );
+
+CourseCard.propTypes = {
+	courseItem: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+		description: PropTypes.string.isRequired,
+		duration: PropTypes.number.isRequired,
+		creationDate: PropTypes.string.isRequired,
+		authors: PropTypes.array.isRequired,
+	}),
+};

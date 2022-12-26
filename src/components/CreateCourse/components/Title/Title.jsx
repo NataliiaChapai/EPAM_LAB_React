@@ -1,4 +1,5 @@
 import { Input } from '../../../../common';
+import PropTypes from 'prop-types';
 
 export const Title = ({ title, onInputTitle }) => (
 	<Input
@@ -8,3 +9,8 @@ export const Title = ({ title, onInputTitle }) => (
 		onChange={onInputTitle}
 	></Input>
 );
+
+Title.propTypes = {
+	title: PropTypes.string.isRequired,
+	onInputTitle: PropTypes.func.isRequired,
+};

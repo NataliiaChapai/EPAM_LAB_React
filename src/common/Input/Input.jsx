@@ -17,4 +17,5 @@ Input.propTypes = {
 	placeholderText: PropTypes.string.isRequired,
 	labelText: PropTypes.string,
 	onChange: PropTypes.func,
+	type: PropTypes.string,
 };

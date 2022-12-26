@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Input, Button } from '../../../../common';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 
 import { StyledFlexCenterItem, StyledFlexLeftItem } from './AddAuthor.styled';
 
@@ -38,4 +39,8 @@ export const AddAuthor = ({ onCreateAuthorBtnClick }) => {
 			<Button buttonText='Create author' onClick={handleClick}></Button>
 		</StyledFlexCenterItem>
 	);
+};
+
+AddAuthor.propTypes = {
+	onCreateAuthorBtnClick: PropTypes.func.isRequired,
 };

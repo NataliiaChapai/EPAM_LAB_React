@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 
 import { Title } from './components/Title';
 import { Description } from './components/Description';
@@ -96,4 +97,8 @@ export const CreateCourse = ({ onHandleClick }) => {
 			</StyledWrapFlex>
 		</StyledContainer>
 	);
+};
+
+Duration.propTypes = {
+	onHandleClick: PropTypes.func.isRequired,
 };
