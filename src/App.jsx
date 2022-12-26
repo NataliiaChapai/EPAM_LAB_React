@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { Courses, Header } from './components';
 import { CreateCourse } from './components/CreateCourse/CreateCourse';
@@ -7,10 +7,10 @@ import { mockedCoursesList } from './components/Courses/mockedCoursesList';
 import { Global } from './Global.styled';
 
 function App() {
-	const [isCoursesList, setIsCoursesList] = useState(true);
+	const navigate = useNavigate();
 
 	const addNewCourse = () => {
-		setIsCoursesList(!isCoursesList);
+		navigate('/courses/add');
 	};
 
 	const createCourse = (course) => {
@@ -23,8 +23,8 @@ function App() {
 			alert('Please, fill in all fields');
 			return;
 		} else {
-			setIsCoursesList(!isCoursesList);
 			mockedCoursesList.push(course);
+			navigate('/courses');
 		}
 	};
 
@@ -32,14 +32,18 @@ function App() {
 		<>
 			<Global />
 			<Header></Header>
-			{isCoursesList ? (
-				<Courses
-					courses={mockedCoursesList}
-					onHandleClick={addNewCourse}
-				></Courses>
-			) : (
-				<CreateCourse onHandleClick={createCourse}></CreateCourse>
-			)}
+			<Routes>
+				<Route
+					path='/courses/add'
+					element={<CreateCourse onHandleClick={createCourse} />}
+				/>
+				<Route
+					path='/courses'
+					element={
+						<Courses courses={mockedCoursesList} onHandleClick={addNewCourse} />
+					}
+				/>
+			</Routes>
 		</>
 	);
 }
