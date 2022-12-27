@@ -18,7 +18,7 @@ export const StyledCenterItem = styled(StyledFlexCenterItem)`
 
 export const StyledSection = styled.section`
 	margin-top: 20px;
-	border: 2px solid green;
+	border: 2px solid blue;
 	padding: auto;
 	display: flex;
 	flex-direction: column;

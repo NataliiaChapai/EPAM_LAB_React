@@ -9,6 +9,7 @@ import {
 	StyledSection,
 	StyledCenterItem,
 } from './Login.styled';
+import { login } from '../../apiService/apiService';
 
 export const Login = () => {
 	const [email, setEmail] = useState('');
@@ -29,6 +30,7 @@ export const Login = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const reqBody = { email, password };
+		login(reqBody);
 		console.log(reqBody);
 		setEmail('');
 		setPassword('');
