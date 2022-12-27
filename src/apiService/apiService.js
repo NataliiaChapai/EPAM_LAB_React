@@ -1,15 +1,34 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:4000';
+axios.defaults.baseURL = 'http://localhost:4000';
+
+const token = {
+	set(token) {
+		axios.defaults.headers.common.Authorization = token;
+	},
+	unset() {
+		axios.defaults.headers.common.Authorization = '';
+	},
+};
 
 export const login = (body) =>
 	axios
-		.post(`${BASE_URL}/login`, body)
-		.then(({ data: { result } }) => localStorage.setItem('token', result))
-		.catch((error) => console.log(error));
+		.post('/login', body)
+		.then(({ data: { result, user } }) => {
+			localStorage.setItem('token', result);
+			localStorage.setItem('user', JSON.stringify(user));
+			token.set(result);
+		})
+		.catch(({ message }) => console.log(message));
 
 export const registration = (body) =>
 	axios
-		.post(`${BASE_URL}/register`, body)
+		.post('/register', body)
 		.then((response) => response)
-		.catch((error) => console.log(error));
+		.catch(({ message }) => console.log(message));
+
+export const logout = () =>
+	axios
+		.delete('/logout')
+		.then((response) => response)
+		.catch(({ message }) => console.log(message));

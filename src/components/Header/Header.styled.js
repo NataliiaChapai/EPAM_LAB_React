@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const StyledFlex = styled.div`
 	display: flex;
@@ -14,4 +15,9 @@ export const StyledHeader = styled(StyledFlex)`
 export const Name = styled.span`
 	margin-right: 30px;
 	font-size: 18px;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+	margin-left: 20px;
+	text-decoration: none;
 `;
