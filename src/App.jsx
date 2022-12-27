@@ -6,6 +6,7 @@ import { mockedCoursesList } from './components/Courses/mockedCoursesList';
 
 import { Global } from './Global.styled';
 import { Login } from './components/Login';
+import { Registration } from './components/Registration/Registration';
 
 function App() {
 	const navigate = useNavigate();
@@ -35,10 +36,7 @@ function App() {
 			<Header></Header>
 			<Routes>
 				<Route path='/login' element={<Login />} />
-				<Route
-					path='/registration'
-					element={<CreateCourse onHandleClick={createCourse} />}
-				/>
+				<Route path='/registration' element={<Registration />} />
 				<Route
 					path='/courses/add'
 					element={<CreateCourse onHandleClick={createCourse} />}
