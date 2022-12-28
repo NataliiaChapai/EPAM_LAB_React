@@ -34,7 +34,6 @@ export const Registration = () => {
 		event.preventDefault();
 		const reqBody = { name, email, password };
 		registration(reqBody);
-		console.log(reqBody);
 		setEmail('');
 		setPassword('');
 		navigate('/login');

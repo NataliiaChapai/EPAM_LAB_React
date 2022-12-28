@@ -2,10 +2,10 @@ import { useLocation, useParams } from 'react-router';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { dateGenerator } from '../../../../helpers/dateGenerator';
-import { pipeDuration } from '../../../../helpers/pipeDuration';
-import { getAuthors } from '../../../../helpers/getAuthorsList';
-import { mockedCoursesList } from '../../mockedCoursesList';
+import { dateGenerator } from '../../helpers/dateGenerator';
+import { pipeDuration } from '../../helpers/pipeDuration';
+import { getAuthors } from '../../helpers/getAuthorsList';
+import { mockedCoursesList } from '../Courses/mockedCoursesList';
 
 import {
 	StyledLeftDiv,
@@ -13,15 +13,15 @@ import {
 	StyledRightDiv,
 	StyledText,
 	StyledSpan,
-} from '../CourseCard/CourseCard.styled';
-import { StyledContainer } from '../../Courses.styled';
+} from '../Courses/components/CourseCard/CourseCard.styled';
+import { StyledContainer } from '../Courses/Courses.styled';
 import {
 	StyledBackLink,
 	StyledCenterItem,
 	StyledList,
 } from './CourseInfo.styled';
-import { StyledFlex } from '../../../Header/Header.styled';
-import { StyledLi } from '../../../CreateCourse/components/Authors/Authors.styled';
+import { StyledFlex } from '../Header/Header.styled';
+import { StyledLi } from '../CreateCourse/components/Authors/Authors.styled';
 
 export const CourseInfo = () => {
 	const { courseId } = useParams();
