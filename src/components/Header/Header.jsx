@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { useNavigate } from 'react-router';
 import { logout } from '../../apiService/apiService';
 import { Button } from '../../common';
 import { Logo } from './components/Logo';
@@ -11,6 +11,7 @@ export const Header = () => {
 	const user = JSON.parse(localStorage.getItem('user'));
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [name, setName] = useState('');
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (token) {
@@ -24,6 +25,7 @@ export const Header = () => {
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
 		setIsLoggedIn(false);
+		navigate('/login');
 	};
 
 	return (

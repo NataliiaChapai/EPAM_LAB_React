@@ -41,4 +41,5 @@ export const StyledLink = styled(Link)`
 	text-align: center;
 	font-family: initial;
 	line-height: 1;
+	color: black;
 `;
