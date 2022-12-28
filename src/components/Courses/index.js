@@ -1,2 +1,2 @@
 export { Courses } from './Courses';
-export { CourseCard, SearchBar } from './components';
+export { CourseCard, SearchBar, CourseInfo } from './components';

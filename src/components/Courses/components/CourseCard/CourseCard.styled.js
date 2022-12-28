@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { StyledFlex } from '../../../Header/Header.styled';
 
@@ -30,4 +31,15 @@ export const StyledTitle = styled.h2`
 	font-weight: 600;
 	line-height: 1;
 	margin-bottom: 10px;
+`;
+
+export const StyledLink = styled(Link)`
+	padding: 5px;
+	min-width: 130px;
+	border: 2px solid purple;
+	background-color: #fff;
+	text-align: center;
+	font-family: initial;
+	line-height: 1;
+	color: black;
 `;

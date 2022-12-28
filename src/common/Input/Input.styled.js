@@ -9,6 +9,6 @@ export const StyledInput = styled.input`
 
 export const Label = styled.label`
 	line-height: 1.8;
-	min-width: 30vw;
+	min-width: 100%;
 	margin-right: 10px;
 `;
