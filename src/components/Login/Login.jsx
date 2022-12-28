@@ -27,11 +27,12 @@ export const Login = () => {
 		}
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const reqBody = { email, password };
-		login(reqBody);
-		console.log(reqBody);
+		const { result, user } = await login(reqBody);
+		localStorage.setItem('user', JSON.stringify(user));
+		localStorage.setItem('token', result);
 		setEmail('');
 		setPassword('');
 		navigate('/courses');

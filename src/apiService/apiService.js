@@ -15,9 +15,8 @@ export const login = (body) =>
 	axios
 		.post('/login', body)
 		.then(({ data: { result, user } }) => {
-			localStorage.setItem('token', result);
-			localStorage.setItem('user', JSON.stringify(user));
 			token.set(result);
+			return { result, user };
 		})
 		.catch(({ message }) => console.log(message));
 
@@ -30,7 +29,7 @@ export const registration = (body) =>
 export const logout = () =>
 	axios
 		.delete('/logout')
-		.then((response) => response)
+		.then(() => token.unset())
 		.catch(({ message }) => console.log(message));
 
 export const courseInfo = (courseId) =>
