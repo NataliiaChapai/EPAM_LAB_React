@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router';
 
-import { Button } from '../../../../common';
 import { dateGenerator } from '../../../../helpers/dateGenerator';
 import { pipeDuration } from '../../../../helpers/pipeDuration';
-import { renderAuthors } from '../../../../helpers/getAuthorsList';
+import { formatAuthorsList } from '../../../../helpers/getAuthorsList';
 
 import {
 	StyledCourseCard,
@@ -13,13 +13,11 @@ import {
 	StyledText,
 	StyledSpan,
 	StyledBtn,
+	StyledLink,
 } from './CourseCard.styled';
-import { useNavigate } from 'react-router';
 
 export const CourseCard = ({ courseItem }) => {
-	const navigate = useNavigate();
-
-	const handleClick = (id) => navigate(`/courses/${id}`);
+	const location = useLocation();
 
 	return (
 		<StyledCourseCard>
@@ -30,21 +28,23 @@ export const CourseCard = ({ courseItem }) => {
 			<StyledRightDiv>
 				<StyledText>
 					<StyledSpan>Authors: </StyledSpan>
-					{renderAuthors(courseItem.authors)}
-				</StyledText>
-				<StyledText>
-					<StyledSpan>Duration: </StyledSpan>
-					{pipeDuration(courseItem.duration)}
+					{formatAuthorsList(courseItem.authors)}
 				</StyledText>
 				<StyledText>
 					<StyledSpan>Created: </StyledSpan>
 					{dateGenerator(courseItem.creationDate, 'dd.mm.yyyy')}
 				</StyledText>
+				<StyledText>
+					<StyledSpan>Duration: </StyledSpan>
+					{pipeDuration(courseItem.duration)}
+				</StyledText>
 				<StyledBtn>
-					<Button
-						buttonText='Show course'
-						onClick={() => handleClick(courseItem.id)}
-					></Button>
+					<StyledLink
+						to={`/courses/${courseItem.id}`}
+						state={{ from: location }}
+					>
+						Show course
+					</StyledLink>
 				</StyledBtn>
 			</StyledRightDiv>
 		</StyledCourseCard>

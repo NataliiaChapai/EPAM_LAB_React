@@ -32,3 +32,9 @@ export const logout = () =>
 		.delete('/logout')
 		.then((response) => response)
 		.catch(({ message }) => console.log(message));
+
+export const courseInfo = (courseId) =>
+	axios
+		.get(`/courses/${courseId}`)
+		.then(({ data: { result } }) => result)
+		.catch(({ message }) => console.log(message));

@@ -1,12 +1,16 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
-import { Courses, Header } from './components';
-import { CreateCourse } from './components/CreateCourse/CreateCourse';
+import {
+	Header,
+	CourseInfo,
+	Courses,
+	CreateCourse,
+	Login,
+	Registration,
+} from './components';
 import { mockedCoursesList } from './components/Courses/mockedCoursesList';
 
 import { Global } from './Global.styled';
-import { Login } from './components/Login';
-import { Registration } from './components/Registration/Registration';
 
 function App() {
 	const navigate = useNavigate();
@@ -41,6 +45,7 @@ function App() {
 					path='/courses/add'
 					element={<CreateCourse onHandleClick={createCourse} />}
 				/>
+				<Route path='/courses/:courseId' element={<CourseInfo />} />
 				<Route
 					path='/courses'
 					element={
