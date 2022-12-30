@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { logout } from '../../apiService/apiService';
+import { logout } from '../../services';
 import { Button } from '../../common';
 import { Logo } from './components/Logo';
 

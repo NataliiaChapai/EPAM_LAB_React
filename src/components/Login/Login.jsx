@@ -9,7 +9,7 @@ import {
 	StyledSection,
 	StyledCenterItem,
 } from './Login.styled';
-import { login } from '../../apiService/apiService';
+import { login } from '../../services';
 
 export const Login = () => {
 	const [email, setEmail] = useState('');

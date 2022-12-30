@@ -14,9 +14,12 @@ const token = {
 export const login = (body) =>
 	axios
 		.post('/login', body)
-		.then(({ data: { result, user } }) => {
-			token.set(result);
-			return { result, user };
+		.then((response) => {
+			if (response.data.token) {
+				localStorage.setItem('user', JSON.stringify(response.data));
+				token.set(response.data.token);
+			}
+			return response.data;
 		})
 		.catch(({ message }) => console.log(message));
 
@@ -29,7 +32,22 @@ export const registration = (body) =>
 export const logout = () =>
 	axios
 		.delete('/logout')
-		.then(() => token.unset())
+		.then(() => {
+			token.unset();
+			localStorage.removeItem('user');
+		})
+		.catch(({ message }) => console.log(message));
+
+export const getCourses = () =>
+	axios
+		.get('/courses/all')
+		.then((response) => response.data.result)
+		.catch(({ message }) => console.log(message));
+
+export const getAuthors = () =>
+	axios
+		.get('/authors/all')
+		.then((response) => response.data.result)
 		.catch(({ message }) => console.log(message));
 
 export const courseInfo = (courseId) =>

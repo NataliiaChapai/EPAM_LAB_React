@@ -9,7 +9,7 @@ import {
 	StyledSection,
 	StyledCenterItem,
 } from '../Login/Login.styled';
-import { registration } from '../../apiService/apiService';
+import { registration } from '../../services';
 
 export const Registration = () => {
 	const [name, setName] = useState('');
