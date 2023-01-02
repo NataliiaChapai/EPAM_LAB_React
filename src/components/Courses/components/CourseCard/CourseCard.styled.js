@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { StyledBtn as Button } from '../../../../common/Button/Button.styled';
 import { StyledFlex } from '../../../Header/Header.styled';
 
 export const StyledCourseCard = styled(StyledFlex)`
@@ -42,4 +43,12 @@ export const StyledLink = styled(Link)`
 	font-family: initial;
 	line-height: 1;
 	color: black;
+`;
+
+export const StyledButton = styled(Button)`
+	min-width: 30px;
+	height: 30px;
+	line-height: 1;
+	font-size: 20px;
+	margin-left: 10px;
 `;

@@ -14,9 +14,11 @@ import {
 	StyledSpan,
 	StyledBtn,
 	StyledLink,
+	StyledButton,
 } from './CourseCard.styled';
 import { useSelector } from 'react-redux';
 import { selectAuthors } from '../../../../store/authors/selectors';
+import { Button } from '../../../../common';
 
 export const CourseCard = ({ courseItem }) => {
 	const location = useLocation();
@@ -49,6 +51,8 @@ export const CourseCard = ({ courseItem }) => {
 					>
 						Show course
 					</StyledLink>
+					<StyledButton>🖉</StyledButton>
+					<StyledButton>🗑</StyledButton>
 				</StyledBtn>
 			</StyledRightDiv>
 		</StyledCourseCard>
