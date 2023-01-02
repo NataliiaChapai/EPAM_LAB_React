@@ -3,7 +3,7 @@ import { LOGIN, LOGOUT } from './actionTypes';
 const token = localStorage.getItem('token');
 
 const intitialState = {
-	isAuth: false,
+	isAuth: token ? true : false,
 	token: token ?? '',
 	email: '',
 	name: '',

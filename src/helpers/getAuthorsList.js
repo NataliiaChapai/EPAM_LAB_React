@@ -1,19 +1,17 @@
-import { mockedAuthorsList } from '../components/Courses/mockedAuthorsList';
-
-const getAuthor = (id) => mockedAuthorsList.find((el) => el.id === id).name;
-
-export const getAuthors = (idsArray) => {
-	let authorsArray = [];
+export const getAuthors = (idsArray, authorsArray) => {
+	const getAuthor = (id) => authorsArray.find((el) => el.id === id).name;
+	console.log(authorsArray);
+	let authorsList = [];
 	idsArray.map((authorId) => {
 		let author = getAuthor(authorId);
-		authorsArray.push(author);
-		return authorsArray;
+		authorsList.push(author);
+		return authorsList;
 	});
-	return authorsArray;
+	return authorsList;
 };
 
-export const formatAuthorsList = (idsArray) => {
-	let line = getAuthors(idsArray).join(', ');
+export const formatAuthorsList = (idsArray, authorsArray) => {
+	let line = getAuthors(idsArray, authorsArray).join(', ');
 	if (line.length > 30) {
 		line = line.slice(0, 30);
 		line = line + '...';

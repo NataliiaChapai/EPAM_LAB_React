@@ -10,7 +10,7 @@ const initialState = [];
 const courses = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_COURSES:
-			return [...state, ...action.payload.data];
+			return [...action.payload, ...state];
 		case ADD_COURSE:
 			return [
 				...state,

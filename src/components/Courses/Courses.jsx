@@ -6,10 +6,18 @@ import { CourseCard, SearchBar } from './components';
 
 import { StyledFlex } from '../Header/Header.styled';
 import { StyledContainer } from './Courses.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCourses } from '../../store/courses/selectors';
+import { getAuthors, getCourses } from '../../services';
+import { GET_COURSES } from '../../store/courses/actionTypes';
+import { GET_AUTHORS } from '../../store/authors/actionTypes';
 
-export const Courses = ({ courses, onHandleClick }) => {
+export const Courses = ({ onHandleClick }) => {
 	const [query, setQuery] = useState('');
 	const [search, setSearch] = useState('');
+	const dispatch = useDispatch();
+	const courses = useSelector(selectCourses);
+	console.log(courses);
 
 	const handleInputChange = (event) => {
 		const { value } = event.currentTarget;
@@ -26,6 +34,14 @@ export const Courses = ({ courses, onHandleClick }) => {
 			course.title.toLowerCase().includes(search) ||
 			course.id.toLowerCase().includes(search)
 	);
+	useEffect(() => {
+		getAuthors().then((responce) =>
+			dispatch({ type: GET_AUTHORS, payload: responce })
+		);
+		getCourses().then((response) =>
+			dispatch({ type: GET_COURSES, payload: response })
+		);
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (!query) {
@@ -54,14 +70,4 @@ export const Courses = ({ courses, onHandleClick }) => {
 
 Courses.propTypes = {
 	onHandleClick: PropTypes.func.isRequired,
-	courses: PropTypes.arrayOf(
-		PropTypes.shape({
-			id: PropTypes.string.isRequired,
-			title: PropTypes.string.isRequired,
-			description: PropTypes.string.isRequired,
-			duration: PropTypes.number.isRequired,
-			creationDate: PropTypes.string.isRequired,
-			authors: PropTypes.array.isRequired,
-		})
-	).isRequired,
 };

@@ -15,9 +15,13 @@ import {
 	StyledBtn,
 	StyledLink,
 } from './CourseCard.styled';
+import { useSelector } from 'react-redux';
+import { selectAuthors } from '../../../../store/authors/selectors';
 
 export const CourseCard = ({ courseItem }) => {
 	const location = useLocation();
+	const authors = useSelector(selectAuthors);
+	console.log(authors);
 
 	return (
 		<StyledCourseCard>
@@ -28,7 +32,7 @@ export const CourseCard = ({ courseItem }) => {
 			<StyledRightDiv>
 				<StyledText>
 					<StyledSpan>Authors: </StyledSpan>
-					{formatAuthorsList(courseItem.authors)}
+					{formatAuthorsList(courseItem.authors, authors)}
 				</StyledText>
 				<StyledText>
 					<StyledSpan>Created: </StyledSpan>
