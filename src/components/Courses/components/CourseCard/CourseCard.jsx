@@ -18,12 +18,10 @@ import {
 } from './CourseCard.styled';
 import { useSelector } from 'react-redux';
 import { selectAuthors } from '../../../../store/authors/selectors';
-import { Button } from '../../../../common';
 
 export const CourseCard = ({ courseItem }) => {
 	const location = useLocation();
 	const authors = useSelector(selectAuthors);
-	console.log(authors);
 
 	return (
 		<StyledCourseCard>

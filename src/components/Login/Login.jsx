@@ -10,11 +10,14 @@ import {
 	StyledCenterItem,
 } from './Login.styled';
 import { login } from '../../services';
+import { useDispatch } from 'react-redux';
+import { LOGIN } from '../../store/user/actionTypes';
 
 export const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	let navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const handleChange = ({ target: { name, value } }) => {
 		switch (name) {
@@ -30,9 +33,11 @@ export const Login = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const reqBody = { email, password };
-		const { result, user } = await login(reqBody);
-		localStorage.setItem('user', JSON.stringify(user));
-		localStorage.setItem('token', result);
+		login(reqBody).then(({ result: token, user: { name } }) => {
+			const payload = { token, email, name, isAuth: true };
+			dispatch({ type: LOGIN, payload });
+		});
+
 		setEmail('');
 		setPassword('');
 		navigate('/courses');

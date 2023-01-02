@@ -5,7 +5,7 @@ const initialState = [];
 const authors = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_AUTHORS:
-			return [...action.payload, ...state];
+			return [...action.payload];
 		case ADD_AUTHOR:
 			return [
 				...state,

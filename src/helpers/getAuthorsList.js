@@ -1,6 +1,5 @@
 export const getAuthors = (idsArray, authorsArray) => {
 	const getAuthor = (id) => authorsArray.find((el) => el.id === id).name;
-	console.log(authorsArray);
 	let authorsList = [];
 	idsArray.map((authorId) => {
 		let author = getAuthor(authorId);

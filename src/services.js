@@ -15,8 +15,9 @@ export const login = (body) =>
 	axios
 		.post('/login', body)
 		.then((response) => {
-			if (response.data.token) {
-				localStorage.setItem('user', JSON.stringify(response.data));
+			if (response.data.result) {
+				localStorage.setItem('user', JSON.stringify(response.data.user));
+				localStorage.setItem('token', response.data.result);
 				token.set(response.data.token);
 			}
 			return response.data;
@@ -34,7 +35,6 @@ export const logout = () =>
 		.delete('/logout')
 		.then(() => {
 			token.unset();
-			localStorage.removeItem('user');
 		})
 		.catch(({ message }) => console.log(message));
 

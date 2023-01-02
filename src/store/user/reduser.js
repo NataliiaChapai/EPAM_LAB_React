@@ -1,12 +1,13 @@
 import { LOGIN, LOGOUT } from './actionTypes';
 
 const token = localStorage.getItem('token');
+const userData = JSON.parse(localStorage.getItem('user'));
 
 const intitialState = {
 	isAuth: token ? true : false,
 	token: token ?? '',
-	email: '',
-	name: '',
+	email: userData ? userData.email : '',
+	name: userData ? userData.name : '',
 };
 
 const user = (state = intitialState, action) => {

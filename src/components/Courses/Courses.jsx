@@ -17,7 +17,6 @@ export const Courses = ({ onHandleClick }) => {
 	const [search, setSearch] = useState('');
 	const dispatch = useDispatch();
 	const courses = useSelector(selectCourses);
-	console.log(courses);
 
 	const handleInputChange = (event) => {
 		const { value } = event.currentTarget;

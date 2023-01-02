@@ -1,37 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { logout } from '../../services';
 import { Button } from '../../common';
 import { Logo } from './components/Logo';
 
 import { StyledHeader, StyledFlex, Name, StyledNavLink } from './Header.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../store/user/selectors';
+import { LOGOUT } from '../../store/user/actionTypes';
 
 export const Header = () => {
-	const token = localStorage.getItem('token');
-	const user = JSON.parse(localStorage.getItem('user'));
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [name, setName] = useState('');
 	const navigate = useNavigate();
-
-	useEffect(() => {
-		if (token) {
-			setIsLoggedIn(true);
-			setName(user.name);
-		}
-	}, [token, user]);
+	const dispatch = useDispatch();
+	const { name, isAuth } = useSelector(selectUser);
+	const token = localStorage.getItem('token');
 
 	const handleClick = () => {
 		logout();
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
-		setIsLoggedIn(false);
 		navigate('/login');
 	};
+
+	useEffect(() => {
+		if (!token) {
+			dispatch({ type: LOGOUT });
+		}
+	}, [dispatch, token]);
 
 	return (
 		<StyledHeader>
 			<Logo></Logo>
-			{isLoggedIn ? (
+			{isAuth ? (
 				<StyledFlex>
 					<Name>{name}</Name>
 					<Button buttonText='Logout' onClick={handleClick}></Button>
