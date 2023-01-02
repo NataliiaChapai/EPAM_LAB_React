@@ -8,20 +8,24 @@ import { CourseAuthors } from './components/CourseAuthors';
 import { Authors } from './components/Authors';
 import { Duration } from './components/Duration';
 import { AddAuthor } from './components/AddAuthor';
-import { mockedAuthorsList } from '../Courses/mockedAuthorsList';
 import { Button } from '../../common';
 
 import { StyledContainer } from '../Courses/Courses.styled';
 import { StyledWrapFlex } from './CreateCourse.styled';
 import { StyledFlex } from '../Header/Header.styled';
 import { dateGenerator } from '../../helpers/dateGenerator';
+import { useDispatch, useSelector } from 'react-redux';
+import { ADD_AUTHOR } from '../../store/authors/actionTypes';
+import { selectAuthors } from '../../store/authors/selectors';
 
 export const CreateCourse = ({ onHandleClick }) => {
+	const authors = useSelector(selectAuthors);
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState(0);
-	const [authorsList, setAuthorsList] = useState(mockedAuthorsList);
+	const [authorsList, setAuthorsList] = useState(authors);
 	const [courseAuthors, setCourseAuthors] = useState([]);
+	const dispatch = useDispatch();
 
 	let newCourse = {
 		id: uuidv4(),
@@ -44,7 +48,7 @@ export const CreateCourse = ({ onHandleClick }) => {
 
 	const createAuthor = (author) => {
 		setAuthorsList((prev) => [...prev, author]);
-		mockedAuthorsList.push(author);
+		dispatch({ type: ADD_AUTHOR, payload: author });
 	};
 
 	const addAuthor = (authorId) => {

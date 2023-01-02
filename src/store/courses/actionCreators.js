@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import { dateGenerator } from '../../helpers/dateGenerator';
 import {
 	ADD_COURSE,
@@ -12,10 +10,10 @@ export const getCourses = () => ({
 	type: GET_COURSES,
 });
 
-export const addCourse = ({ title, description, duration, authors }) => ({
+export const addCourse = ({ id, title, description, duration, authors }) => ({
 	type: ADD_COURSE,
 	payload: {
-		id: uuidv4(),
+		id,
 		title,
 		description,
 		duration,

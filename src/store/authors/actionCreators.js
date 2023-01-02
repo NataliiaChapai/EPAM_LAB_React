@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import { ADD_AUTHOR, GET_AUTHORS } from './actionTypes';
 
 export const getAuthors = () => {
@@ -8,10 +6,10 @@ export const getAuthors = () => {
 	};
 };
 
-export const addAuthor = ({ name }) => ({
+export const addAuthor = ({ id, name }) => ({
 	type: ADD_AUTHOR,
 	payload: {
-		id: uuidv4(),
+		id,
 		name,
 	},
 });
