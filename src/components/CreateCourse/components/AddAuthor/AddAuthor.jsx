@@ -4,9 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
 import { StyledFlexCenterItem, StyledFlexLeftItem } from './AddAuthor.styled';
+import { useDispatch } from 'react-redux';
+import { ADD_AUTHOR } from '../../../../store/authors/actionTypes';
 
 export const AddAuthor = ({ onCreateAuthorBtnClick }) => {
 	const [author, setAuthor] = useState('');
+	const dispatch = useDispatch();
 
 	const handleInputChange = (event) => {
 		const { value } = event.currentTarget;
@@ -19,7 +22,9 @@ export const AddAuthor = ({ onCreateAuthorBtnClick }) => {
 			alert('Author name length should be at least 2 characters');
 			return;
 		} else {
-			onCreateAuthorBtnClick({ id: uuidv4(), name: author });
+			const payload = { id: uuidv4(), name: author };
+			onCreateAuthorBtnClick(payload);
+			dispatch({ type: ADD_AUTHOR, payload });
 		}
 	};
 

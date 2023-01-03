@@ -1,4 +1,6 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 
 import {
 	Header,
@@ -8,31 +10,22 @@ import {
 	Login,
 	Registration,
 } from './components';
-import { mockedCoursesList } from './components/Courses/mockedCoursesList';
 
 import { Global } from './Global.styled';
+import { getAuthors, getCourses } from './services';
+import { GET_AUTHORS } from './store/authors/actionTypes';
+import { GET_COURSES } from './store/courses/actionTypes';
 
 function App() {
-	const navigate = useNavigate();
-
-	const addNewCourse = () => {
-		navigate('/courses/add');
-	};
-
-	const createCourse = (course) => {
-		if (
-			!course.title ||
-			course.description.length < 2 ||
-			course.duration <= 0 ||
-			!course.authors.length
-		) {
-			alert('Please, fill in all fields');
-			return;
-		} else {
-			mockedCoursesList.push(course);
-			navigate('/courses');
-		}
-	};
+	const dispatch = useDispatch();
+	useEffect(() => {
+		getAuthors().then((responce) =>
+			dispatch({ type: GET_AUTHORS, payload: responce })
+		);
+		getCourses().then((response) =>
+			dispatch({ type: GET_COURSES, payload: response })
+		);
+	}, [dispatch]);
 
 	return (
 		<>
@@ -41,17 +34,9 @@ function App() {
 			<Routes>
 				<Route path='/login' element={<Login />} />
 				<Route path='/registration' element={<Registration />} />
-				<Route
-					path='/courses/add'
-					element={<CreateCourse onHandleClick={createCourse} />}
-				/>
+				<Route path='/courses/add' element={<CreateCourse />} />
 				<Route path='/courses/:courseId' element={<CourseInfo />} />
-				<Route
-					path='/courses'
-					element={
-						<Courses courses={mockedCoursesList} onHandleClick={addNewCourse} />
-					}
-				/>
+				<Route path='/courses' element={<Courses />} />
 			</Routes>
 		</>
 	);

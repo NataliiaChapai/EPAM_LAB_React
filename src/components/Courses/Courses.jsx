@@ -1,22 +1,19 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import { selectCourses } from '../../store/courses/selectors';
 import { Button } from '../../common';
 import { CourseCard, SearchBar } from './components';
 
 import { StyledFlex } from '../Header/Header.styled';
 import { StyledContainer } from './Courses.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCourses } from '../../store/courses/selectors';
-import { getAuthors, getCourses } from '../../services';
-import { GET_COURSES } from '../../store/courses/actionTypes';
-import { GET_AUTHORS } from '../../store/authors/actionTypes';
 
-export const Courses = ({ onHandleClick }) => {
+export const Courses = () => {
 	const [query, setQuery] = useState('');
 	const [search, setSearch] = useState('');
-	const dispatch = useDispatch();
 	const courses = useSelector(selectCourses);
+	const navigate = useNavigate();
 
 	const handleInputChange = (event) => {
 		const { value } = event.currentTarget;
@@ -33,14 +30,10 @@ export const Courses = ({ onHandleClick }) => {
 			course.title.toLowerCase().includes(search) ||
 			course.id.toLowerCase().includes(search)
 	);
-	useEffect(() => {
-		getAuthors().then((responce) =>
-			dispatch({ type: GET_AUTHORS, payload: responce })
-		);
-		getCourses().then((response) =>
-			dispatch({ type: GET_COURSES, payload: response })
-		);
-	}, [dispatch]);
+
+	const addNewCourse = () => {
+		navigate('/courses/add');
+	};
 
 	useEffect(() => {
 		if (!query) {
@@ -56,7 +49,7 @@ export const Courses = ({ onHandleClick }) => {
 					onHandleClick={handleClick}
 					onHandleInputChange={handleInputChange}
 				></SearchBar>
-				<Button onClick={onHandleClick} buttonText='Add new course'></Button>
+				<Button onClick={addNewCourse} buttonText='Add new course'></Button>
 			</StyledFlex>
 			<ul>
 				{searchCourse.map((course) => (
@@ -65,8 +58,4 @@ export const Courses = ({ onHandleClick }) => {
 			</ul>
 		</StyledContainer>
 	);
-};
-
-Courses.propTypes = {
-	onHandleClick: PropTypes.func.isRequired,
 };

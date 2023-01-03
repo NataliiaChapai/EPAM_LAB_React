@@ -1,4 +1,3 @@
-import { dateGenerator } from '../../helpers/dateGenerator';
 import {
 	ADD_COURSE,
 	DELETE_COURSE,
@@ -6,11 +5,19 @@ import {
 	UPDATE_COURSE,
 } from './actionTypes';
 
-export const getCourses = () => ({
+export const getCourses = ({ courses }) => ({
 	type: GET_COURSES,
+	payload: courses,
 });
 
-export const addCourse = ({ id, title, description, duration, authors }) => ({
+export const addCourse = ({
+	id,
+	title,
+	description,
+	duration,
+	authors,
+	creationDate,
+}) => ({
 	type: ADD_COURSE,
 	payload: {
 		id,
@@ -18,7 +25,7 @@ export const addCourse = ({ id, title, description, duration, authors }) => ({
 		description,
 		duration,
 		authors,
-		creationDate: dateGenerator(new Date(), 'mm/dd/yyyy'),
+		creationDate,
 	},
 });
 

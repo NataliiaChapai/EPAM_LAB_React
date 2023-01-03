@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { dateGenerator } from '../../helpers/dateGenerator';
 import { pipeDuration } from '../../helpers/pipeDuration';
 import { getAuthors } from '../../helpers/getAuthorsList';
-import { mockedCoursesList } from '../Courses/mockedCoursesList';
 
 import {
 	StyledLeftDiv,
@@ -22,12 +21,17 @@ import {
 } from './CourseInfo.styled';
 import { StyledFlex } from '../Header/Header.styled';
 import { StyledLi } from '../CreateCourse/components/Authors/Authors.styled';
+import { useSelector } from 'react-redux';
+import { selectCourses } from '../../store/courses/selectors';
+import { selectAuthors } from '../../store/authors/selectors';
 
 export const CourseInfo = () => {
+	const courses = useSelector(selectCourses);
+	const authors = useSelector(selectAuthors);
 	const { courseId } = useParams();
 	const location = useLocation();
 	const [page] = useState(location.state.from);
-	const course = mockedCoursesList.find((course) => course.id === courseId);
+	const course = courses.find((course) => course.id === courseId);
 
 	return (
 		<StyledContainer>
@@ -57,7 +61,7 @@ export const CourseInfo = () => {
 						<StyledSpan>Authors: </StyledSpan>
 					</StyledText>
 					<StyledList>
-						{getAuthors(course.authors).map((name) => (
+						{getAuthors(course.authors, authors).map((name) => (
 							<StyledLi key={uuidv4()}>{name}</StyledLi>
 						))}
 					</StyledList>

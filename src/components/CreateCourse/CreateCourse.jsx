@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import PropTypes from 'prop-types';
 
 import { Title } from './components/Title';
 import { Description } from './components/Description';
@@ -15,17 +14,19 @@ import { StyledWrapFlex } from './CreateCourse.styled';
 import { StyledFlex } from '../Header/Header.styled';
 import { dateGenerator } from '../../helpers/dateGenerator';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_AUTHOR } from '../../store/authors/actionTypes';
 import { selectAuthors } from '../../store/authors/selectors';
+import { ADD_COURSE } from '../../store/courses/actionTypes';
+import { useNavigate } from 'react-router-dom';
 
-export const CreateCourse = ({ onHandleClick }) => {
+export const CreateCourse = () => {
 	const authors = useSelector(selectAuthors);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [duration, setDuration] = useState(0);
 	const [authorsList, setAuthorsList] = useState(authors);
 	const [courseAuthors, setCourseAuthors] = useState([]);
-	const dispatch = useDispatch();
 
 	let newCourse = {
 		id: uuidv4(),
@@ -48,7 +49,6 @@ export const CreateCourse = ({ onHandleClick }) => {
 
 	const createAuthor = (author) => {
 		setAuthorsList((prev) => [...prev, author]);
-		dispatch({ type: ADD_AUTHOR, payload: author });
 	};
 
 	const addAuthor = (authorId) => {
@@ -74,14 +74,26 @@ export const CreateCourse = ({ onHandleClick }) => {
 		setAuthorsList((prev) => [...prev, author]);
 	};
 
+	const handleClick = () => {
+		if (
+			!newCourse.title ||
+			newCourse.description.length < 2 ||
+			newCourse.duration <= 0 ||
+			!newCourse.authors.length
+		) {
+			alert('Please, fill in all fields');
+			return;
+		} else {
+			dispatch({ type: ADD_COURSE, payload: newCourse });
+			navigate('/courses');
+		}
+	};
+
 	return (
 		<StyledContainer>
 			<StyledFlex>
 				<Title title={title} onInputTitle={addTitle}></Title>
-				<Button
-					buttonText='Create course'
-					onClick={() => onHandleClick(newCourse)}
-				></Button>
+				<Button buttonText='Create course' onClick={handleClick}></Button>
 			</StyledFlex>
 			<Description
 				description={description}
@@ -101,8 +113,4 @@ export const CreateCourse = ({ onHandleClick }) => {
 			</StyledWrapFlex>
 		</StyledContainer>
 	);
-};
-
-CreateCourse.propTypes = {
-	onHandleClick: PropTypes.func.isRequired,
 };
