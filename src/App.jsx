@@ -18,15 +18,18 @@ import { GET_COURSES } from './store/courses/actionTypes';
 
 function App() {
 	const dispatch = useDispatch();
+	const token = localStorage.getItem('token');
 
 	useEffect(() => {
-		getAuthors().then((responce) =>
-			dispatch({ type: GET_AUTHORS, payload: responce })
-		);
-		getCourses().then((response) =>
-			dispatch({ type: GET_COURSES, payload: response })
-		);
-	}, [dispatch]);
+		if (token) {
+			getAuthors().then((responce) =>
+				dispatch({ type: GET_AUTHORS, payload: responce })
+			);
+			getCourses().then((response) =>
+				dispatch({ type: GET_COURSES, payload: response })
+			);
+		}
+	}, [dispatch, token]);
 
 	return (
 		<>

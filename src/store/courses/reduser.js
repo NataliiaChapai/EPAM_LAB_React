@@ -12,28 +12,15 @@ const courses = (state = initialState, action) => {
 		case GET_COURSES:
 			return [...action.payload];
 		case ADD_COURSE:
-			return [
-				...state,
-				{
-					id: action.payload.id,
-					title: action.payload.title,
-					description: action.payload.description,
-					duration: action.payload.duration,
-					authors: action.payload.authors,
-					creationDate: action.payload.creationDate,
-				},
-			];
+			return [...state, action.payload];
 		case UPDATE_COURSE:
 			return [
-				...state.filter((course) => course.id !== action.payload.id),
-				{
-					...state.find((course) => course.id === action.payload.id),
-					title: action.payload.title,
-					description: action.payload.description,
-					duration: action.payload.duration,
-					acthors: action.payload.acthors,
-					creationDate: action.payload.creationDate,
-				},
+				...state.map((course) => {
+					if (course.id === action.payload.id) {
+						return { ...course, ...action.payload };
+					}
+					return course;
+				}),
 			];
 		case DELETE_COURSE:
 			return state.filter((course) => course.id !== action.payload);
