@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { dateGenerator } from '../../../../helpers/dateGenerator';
 import { pipeDuration } from '../../../../helpers/pipeDuration';
 import { formatAuthorsList } from '../../../../helpers/getAuthorsList';
+import { selectAuthors } from '../../../../store/authors/selectors';
+import { DELETE_COURSE } from '../../../../store/courses/actionTypes';
 
 import {
 	StyledCourseCard,
@@ -16,19 +19,11 @@ import {
 	StyledLink,
 	StyledButton,
 } from './CourseCard.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAuthors } from '../../../../store/authors/selectors';
-import { DELETE_COURSE } from '../../../../store/courses/actionTypes';
 
 export const CourseCard = ({ courseItem }) => {
 	const location = useLocation();
 	const authors = useSelector(selectAuthors);
 	const dispatch = useDispatch();
-
-	const deleteCourse = (id) => {
-		console.log('ggg');
-		dispatch({ type: DELETE_COURSE, payload: id });
-	};
 
 	return (
 		<StyledCourseCard>
@@ -57,7 +52,11 @@ export const CourseCard = ({ courseItem }) => {
 						Show course
 					</StyledLink>
 					<StyledButton>🖉</StyledButton>
-					<StyledButton onClick={() => deleteCourse(courseItem.id)}>
+					<StyledButton
+						onClick={() =>
+							dispatch({ type: DELETE_COURSE, payload: courseItem.id })
+						}
+					>
 						🗑
 					</StyledButton>
 				</StyledBtn>
