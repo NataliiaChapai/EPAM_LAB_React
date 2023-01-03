@@ -16,12 +16,19 @@ import {
 	StyledLink,
 	StyledButton,
 } from './CourseCard.styled';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthors } from '../../../../store/authors/selectors';
+import { DELETE_COURSE } from '../../../../store/courses/actionTypes';
 
 export const CourseCard = ({ courseItem }) => {
 	const location = useLocation();
 	const authors = useSelector(selectAuthors);
+	const dispatch = useDispatch();
+
+	const deleteCourse = (id) => {
+		console.log('ggg');
+		dispatch({ type: DELETE_COURSE, payload: id });
+	};
 
 	return (
 		<StyledCourseCard>
@@ -50,7 +57,9 @@ export const CourseCard = ({ courseItem }) => {
 						Show course
 					</StyledLink>
 					<StyledButton>🖉</StyledButton>
-					<StyledButton>🗑</StyledButton>
+					<StyledButton onClick={() => deleteCourse(courseItem.id)}>
+						🗑
+					</StyledButton>
 				</StyledBtn>
 			</StyledRightDiv>
 		</StyledCourseCard>

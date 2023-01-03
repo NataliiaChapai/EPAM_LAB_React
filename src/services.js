@@ -18,7 +18,7 @@ export const login = (body) =>
 			if (response.data.result) {
 				localStorage.setItem('user', JSON.stringify(response.data.user));
 				localStorage.setItem('token', response.data.result);
-				token.set(response.data.token);
+				token.set(response.data.result);
 			}
 			return response.data;
 		})

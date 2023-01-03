@@ -15,18 +15,18 @@ export const Header = () => {
 	const { name, isAuth } = useSelector(selectUser);
 	const token = localStorage.getItem('token');
 
+	useEffect(() => {
+		if (!token) {
+			dispatch({ type: LOGOUT });
+		}
+	}, [dispatch, token]);
+
 	const handleClick = () => {
 		logout();
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
 		navigate('/login');
 	};
-
-	useEffect(() => {
-		if (!token) {
-			dispatch({ type: LOGOUT });
-		}
-	}, [dispatch, token]);
 
 	return (
 		<StyledHeader>

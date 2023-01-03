@@ -18,6 +18,7 @@ import { GET_COURSES } from './store/courses/actionTypes';
 
 function App() {
 	const dispatch = useDispatch();
+
 	useEffect(() => {
 		getAuthors().then((responce) =>
 			dispatch({ type: GET_AUTHORS, payload: responce })
