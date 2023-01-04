@@ -34,7 +34,13 @@ export const Login = () => {
 		event.preventDefault();
 		const reqBody = { email, password };
 		login(reqBody).then(({ result: token, user: { name } }) => {
-			const payload = { token, email, name, isAuth: true };
+			const payload = {
+				token,
+				email,
+				name,
+				role: email === 'admin@email.com' ? 'ADMIN' : 'USER',
+				isAuth: true,
+			};
 			dispatch({ type: LOGIN, payload });
 		});
 

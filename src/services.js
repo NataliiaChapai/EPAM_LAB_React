@@ -16,7 +16,6 @@ export const login = (body) =>
 		.post('/login', body)
 		.then((response) => {
 			if (response.data.result) {
-				localStorage.setItem('user', JSON.stringify(response.data.user));
 				localStorage.setItem('token', response.data.result);
 				token.set(response.data.result);
 			}

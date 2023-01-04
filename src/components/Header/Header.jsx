@@ -24,7 +24,6 @@ export const Header = () => {
 	const handleClick = () => {
 		logout();
 		localStorage.removeItem('token');
-		localStorage.removeItem('user');
 		navigate('/login');
 	};
 
