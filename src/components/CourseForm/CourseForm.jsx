@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { Title } from './components/Title';
 import { Description } from './components/Description';
@@ -8,17 +10,15 @@ import { Authors } from './components/Authors';
 import { Duration } from './components/Duration';
 import { AddAuthor } from './components/AddAuthor';
 import { Button } from '../../common';
-
-import { StyledContainer } from '../Courses/Courses.styled';
-import { StyledWrapFlex } from './CreateCourse.styled';
-import { StyledFlex } from '../Header/Header.styled';
 import { dateGenerator } from '../../helpers/dateGenerator';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthors } from '../../store/authors/selectors';
 import { ADD_COURSE } from '../../store/courses/actionTypes';
-import { useNavigate } from 'react-router-dom';
 
-export const CreateCourse = () => {
+import { StyledContainer } from '../Courses/Courses.styled';
+import { StyledWrapFlex } from './CourseForm.styled';
+import { StyledFlex } from '../Header/Header.styled';
+
+export const CourseForm = () => {
 	const authors = useSelector(selectAuthors);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();

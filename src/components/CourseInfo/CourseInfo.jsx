@@ -20,7 +20,7 @@ import {
 	StyledList,
 } from './CourseInfo.styled';
 import { StyledFlex } from '../Header/Header.styled';
-import { StyledLi } from '../CreateCourse/components/Authors/Authors.styled';
+import { StyledLi } from '../CourseForm/components/Authors/Authors.styled';
 import { useSelector } from 'react-redux';
 import { selectCourses } from '../../store/courses/selectors';
 import { selectAuthors } from '../../store/authors/selectors';

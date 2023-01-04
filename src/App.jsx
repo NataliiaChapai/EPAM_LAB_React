@@ -6,10 +6,11 @@ import {
 	Header,
 	CourseInfo,
 	Courses,
-	CreateCourse,
+	CourseForm,
 	Login,
 	Registration,
 } from './components';
+import { PrivateRoute } from './components/PrivateRouter/PrivateRouter';
 
 import { Global } from './Global.styled';
 import { getAuthors, getCourses } from './services';
@@ -38,7 +39,14 @@ function App() {
 			<Routes>
 				<Route path='/login' element={<Login />} />
 				<Route path='/registration' element={<Registration />} />
-				<Route path='/courses/add' element={<CreateCourse />} />
+				<Route
+					path='/courses/add'
+					element={
+						<PrivateRoute redirectTo='/courses'>
+							<CourseForm />
+						</PrivateRoute>
+					}
+				/>
 				<Route path='/courses/:courseId' element={<CourseInfo />} />
 				<Route path='/courses' element={<Courses />} />
 			</Routes>

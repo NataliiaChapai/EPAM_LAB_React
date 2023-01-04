@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button, Input } from '../../common';
 
-import { StyledP } from '../CreateCourse/components/CourseAuthors/CourseAuthors.styled';
+import { StyledP } from '../CourseForm/components/CourseAuthors/CourseAuthors.styled';
 import {
 	StyledFlexColumn,
 	StyledSection,

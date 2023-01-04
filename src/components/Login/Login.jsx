@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { Button, Input } from '../../common';
-import { StyledP } from '../CreateCourse/components/CourseAuthors/CourseAuthors.styled';
+import { StyledP } from '../CourseForm/components/CourseAuthors/CourseAuthors.styled';
 
 import {
 	StyledFlexColumn,
@@ -34,7 +34,13 @@ export const Login = () => {
 		event.preventDefault();
 		const reqBody = { email, password };
 		login(reqBody).then(({ result: token, user: { name } }) => {
-			const payload = { token, email, name, isAuth: true };
+			const payload = {
+				token,
+				email,
+				name,
+				role: email === 'admin@email.com' ? 'ADMIN' : 'USER',
+				isAuth: true,
+			};
 			dispatch({ type: LOGIN, payload });
 		});
 

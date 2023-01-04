@@ -1,10 +1,13 @@
 import { LOGIN, LOGOUT } from './actionTypes';
 
-export const login = ({ email, password }) => ({
+export const login = ({ token, email, name, isAuth, role }) => ({
 	type: LOGIN,
 	payload: {
+		isAuth,
+		token,
 		email,
-		password,
+		name,
+		role,
 	},
 });
 

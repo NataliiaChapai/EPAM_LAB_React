@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledFlexCenterItem } from '../CreateCourse/components/AddAuthor/AddAuthor.styled';
+import { StyledFlexCenterItem } from '../CourseForm/components/AddAuthor/AddAuthor.styled';
 
 export const StyledFlexColumn = styled.div`
 	display: flex;
