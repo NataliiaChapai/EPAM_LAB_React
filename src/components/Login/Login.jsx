@@ -1,17 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Button, Input } from '../../common';
-import { StyledP } from '../CreateCourse/components/CourseAuthors/CourseAuthors.styled';
+import { apiLogin } from '../../services';
+import { login } from '../../store/user/actionCreators';
 
+import { StyledP } from '../CreateCourse/components/CourseAuthors/CourseAuthors.styled';
 import {
 	StyledFlexColumn,
 	StyledSection,
 	StyledCenterItem,
 } from './Login.styled';
-import { login } from '../../services';
-import { useDispatch } from 'react-redux';
-import { LOGIN } from '../../store/user/actionTypes';
 
 export const Login = () => {
 	const [email, setEmail] = useState('');
@@ -33,7 +33,7 @@ export const Login = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const reqBody = { email, password };
-		login(reqBody).then(({ result: token, user: { name } }) => {
+		apiLogin(reqBody).then(({ result: token, user: { name } }) => {
 			const payload = {
 				token,
 				email,
@@ -41,7 +41,7 @@ export const Login = () => {
 				role: email === 'admin@email.com' ? 'ADMIN' : 'USER',
 				isAuth: true,
 			};
-			dispatch({ type: LOGIN, payload });
+			dispatch(login(payload));
 		});
 
 		setEmail('');

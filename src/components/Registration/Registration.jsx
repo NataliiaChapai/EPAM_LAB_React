@@ -9,7 +9,7 @@ import {
 	StyledSection,
 	StyledCenterItem,
 } from '../Login/Login.styled';
-import { registration } from '../../services';
+import { apiRegistration } from '../../services';
 
 export const Registration = () => {
 	const [name, setName] = useState('');
@@ -33,7 +33,7 @@ export const Registration = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const reqBody = { name, email, password };
-		registration(reqBody);
+		apiRegistration(reqBody);
 		setEmail('');
 		setPassword('');
 		navigate('/login');

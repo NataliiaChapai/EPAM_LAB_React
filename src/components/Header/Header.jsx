@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { logout } from '../../services';
+import { apiLogout } from '../../services';
 import { Button } from '../../common';
 import { Logo } from './components/Logo';
 
@@ -22,7 +22,7 @@ export const Header = () => {
 	}, [dispatch, token]);
 
 	const handleClick = () => {
-		logout();
+		apiLogout();
 		localStorage.removeItem('token');
 		navigate('/login');
 	};

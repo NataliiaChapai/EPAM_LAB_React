@@ -10,11 +10,11 @@ import {
 	Login,
 	Registration,
 } from './components';
+import { getAuthors } from './store/authors/actionCreators';
+import { apiAuthors, apiCourses } from './services';
+import { getCourses } from './store/courses/actionCreators';
 
 import { Global } from './Global.styled';
-import { getAuthors, getCourses } from './services';
-import { GET_AUTHORS } from './store/authors/actionTypes';
-import { GET_COURSES } from './store/courses/actionTypes';
 
 function App() {
 	const dispatch = useDispatch();
@@ -22,12 +22,8 @@ function App() {
 
 	useEffect(() => {
 		if (token) {
-			getAuthors().then((responce) =>
-				dispatch({ type: GET_AUTHORS, payload: responce })
-			);
-			getCourses().then((response) =>
-				dispatch({ type: GET_COURSES, payload: response })
-			);
+			apiAuthors().then((response) => dispatch(getAuthors(response)));
+			apiCourses().then((response) => dispatch(getCourses(response)));
 		}
 	}, [dispatch, token]);
 
