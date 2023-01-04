@@ -9,9 +9,8 @@ import {
 	StyledSection,
 	StyledCenterItem,
 } from './Login.styled';
-import { login } from '../../services';
 import { useDispatch } from 'react-redux';
-import { LOGIN } from '../../store/user/actionTypes';
+import { loginThunk } from '../../store/user/thunk';
 
 export const Login = () => {
 	const [email, setEmail] = useState('');
@@ -33,17 +32,7 @@ export const Login = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const reqBody = { email, password };
-		login(reqBody).then(({ result: token, user: { name } }) => {
-			const payload = {
-				token,
-				email,
-				name,
-				role: email === 'admin@email.com' ? 'ADMIN' : 'USER',
-				isAuth: true,
-			};
-			dispatch({ type: LOGIN, payload });
-		});
-
+		dispatch(loginThunk(reqBody));
 		setEmail('');
 		setPassword('');
 		navigate('/courses');

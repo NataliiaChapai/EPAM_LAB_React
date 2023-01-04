@@ -11,12 +11,11 @@ const token = {
 	},
 };
 
-export const login = (body) =>
+export const apiLogin = (body) =>
 	axios
 		.post('/login', body)
 		.then((response) => {
 			if (response.data.result) {
-				localStorage.setItem('user', JSON.stringify(response.data.user));
 				localStorage.setItem('token', response.data.result);
 				token.set(response.data.result);
 			}
