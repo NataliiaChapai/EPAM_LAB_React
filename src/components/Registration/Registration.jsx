@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { Button, Input } from '../../common';
+import { apiRegistration } from '../../services';
 
 import { StyledP } from '../CourseForm/components/CourseAuthors/CourseAuthors.styled';
 import {
@@ -9,7 +10,6 @@ import {
 	StyledSection,
 	StyledCenterItem,
 } from '../Login/Login.styled';
-import { registration } from '../../services';
 
 export const Registration = () => {
 	const [name, setName] = useState('');
@@ -33,7 +33,7 @@ export const Registration = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const reqBody = { name, email, password };
-		registration(reqBody);
+		apiRegistration(reqBody);
 		setEmail('');
 		setPassword('');
 		navigate('/login');

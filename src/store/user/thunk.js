@@ -1,5 +1,5 @@
-import { apiLogin } from '../../services';
-import { login } from './actionCreators';
+import { apiLogin, apiLogout } from '../../services';
+import { login, logout } from './actionCreators';
 
 export const loginThunk = ({ email, password }) => {
 	return (dispatch) => {
@@ -13,5 +13,11 @@ export const loginThunk = ({ email, password }) => {
 			};
 			return dispatch(login(payload));
 		});
+	};
+};
+
+export const logoutThunk = () => {
+	return (dispatch) => {
+		apiLogout().then(() => dispatch(logout()));
 	};
 };

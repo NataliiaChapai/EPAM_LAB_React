@@ -1,30 +1,21 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { logout } from '../../services';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Button } from '../../common';
 import { Logo } from './components/Logo';
+import { selectUser } from '../../store/user/selectors';
+import { logoutThunk } from '../../store/user/thunk';
 
 import { StyledHeader, StyledFlex, Name, StyledNavLink } from './Header.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../store/user/selectors';
-import { LOGOUT } from '../../store/user/actionTypes';
 
 export const Header = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { name, isAuth } = useSelector(selectUser);
-	const token = localStorage.getItem('token');
-
-	useEffect(() => {
-		if (!token) {
-			dispatch({ type: LOGOUT });
-		}
-	}, [dispatch, token]);
 
 	const handleClick = () => {
-		logout();
+		dispatch(logoutThunk());
 		localStorage.removeItem('token');
-		localStorage.removeItem('user');
 		navigate('/login');
 	};
 

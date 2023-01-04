@@ -13,7 +13,7 @@ import {
 import { PrivateRoute } from './components/PrivateRouter/PrivateRouter';
 
 import { Global } from './Global.styled';
-import { getAuthors, getCourses } from './services';
+import { apiAuthors, apiCourses } from './services';
 import { GET_AUTHORS } from './store/authors/actionTypes';
 import { GET_COURSES } from './store/courses/actionTypes';
 
@@ -23,10 +23,10 @@ function App() {
 
 	useEffect(() => {
 		if (token) {
-			getAuthors().then((responce) =>
+			apiAuthors().then((responce) =>
 				dispatch({ type: GET_AUTHORS, payload: responce })
 			);
-			getCourses().then((response) =>
+			apiCourses().then((response) =>
 				dispatch({ type: GET_COURSES, payload: response })
 			);
 		}

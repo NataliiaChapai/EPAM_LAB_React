@@ -11,6 +11,10 @@ const token = {
 	},
 };
 
+if (localStorage.getItem('token')) {
+	token.set(localStorage.getItem('token'));
+}
+
 export const apiLogin = (body) =>
 	axios
 		.post('/login', body)
@@ -23,13 +27,13 @@ export const apiLogin = (body) =>
 		})
 		.catch(({ message }) => console.log(message));
 
-export const registration = (body) =>
+export const apiRegistration = (body) =>
 	axios
 		.post('/register', body)
 		.then((response) => response)
 		.catch(({ message }) => console.log(message));
 
-export const logout = () =>
+export const apiLogout = () =>
 	axios
 		.delete('/logout')
 		.then(() => {
@@ -37,19 +41,19 @@ export const logout = () =>
 		})
 		.catch(({ message }) => console.log(message));
 
-export const getCourses = () =>
+export const apiCourses = () =>
 	axios
 		.get('/courses/all')
 		.then((response) => response.data.result)
 		.catch(({ message }) => console.log(message));
 
-export const getAuthors = () =>
+export const apiAuthors = () =>
 	axios
 		.get('/authors/all')
 		.then((response) => response.data.result)
 		.catch(({ message }) => console.log(message));
 
-export const courseInfo = (courseId) =>
+export const apiCourseInfo = (courseId) =>
 	axios
 		.get(`/courses/${courseId}`)
 		.then(({ data: { result } }) => result)
