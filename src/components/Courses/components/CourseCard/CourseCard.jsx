@@ -19,11 +19,13 @@ import {
 	StyledLink,
 	StyledButton,
 } from './CourseCard.styled';
+import { selectUser } from '../../../../store/user/selectors';
 
 export const CourseCard = ({ courseItem }) => {
 	const location = useLocation();
 	const authors = useSelector(selectAuthors);
 	const dispatch = useDispatch();
+	const { role } = useSelector(selectUser);
 
 	return (
 		<StyledCourseCard>
@@ -51,14 +53,16 @@ export const CourseCard = ({ courseItem }) => {
 					>
 						Show course
 					</StyledLink>
-					<StyledButton>🖉</StyledButton>
-					<StyledButton
-						onClick={() =>
-							dispatch({ type: DELETE_COURSE, payload: courseItem.id })
-						}
-					>
-						🗑
-					</StyledButton>
+					{role === 'ADMIN' && <StyledButton>🖉</StyledButton>}
+					{role === 'ADMIN' && (
+						<StyledButton
+							onClick={() =>
+								dispatch({ type: DELETE_COURSE, payload: courseItem.id })
+							}
+						>
+							🗑
+						</StyledButton>
+					)}
 				</StyledBtn>
 			</StyledRightDiv>
 		</StyledCourseCard>
