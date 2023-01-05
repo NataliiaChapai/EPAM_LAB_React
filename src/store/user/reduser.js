@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from './actionTypes';
+import { CURRENT_USER, LOGIN, LOGOUT } from './actionTypes';
 
 const token = localStorage.getItem('token');
 
@@ -16,6 +16,8 @@ const user = (state = intitialState, action) => {
 			return action.payload;
 		case LOGOUT:
 			return intitialState;
+		case CURRENT_USER:
+			return { ...state, ...action.payload };
 		default:
 			return state;
 	}

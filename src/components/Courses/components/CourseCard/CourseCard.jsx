@@ -53,8 +53,8 @@ export const CourseCard = ({ courseItem }) => {
 					>
 						Show course
 					</StyledLink>
-					{role === 'ADMIN' && <StyledButton>🖉</StyledButton>}
-					{role === 'ADMIN' && (
+					{role === 'admin' && <StyledButton>🖉</StyledButton>}
+					{role === 'admin' && (
 						<StyledButton
 							onClick={() =>
 								dispatch({ type: DELETE_COURSE, payload: courseItem.id })

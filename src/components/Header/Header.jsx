@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import { Button } from '../../common';
 import { Logo } from './components/Logo';
 import { selectUser } from '../../store/user/selectors';
-import { logoutThunk } from '../../store/user/thunk';
+import { currentUserThunk, logoutThunk } from '../../store/user/thunk';
 
 import { StyledHeader, StyledFlex, Name, StyledNavLink } from './Header.styled';
 
@@ -14,10 +15,14 @@ export const Header = () => {
 	const { name, isAuth } = useSelector(selectUser);
 
 	const handleClick = () => {
-		dispatch(logoutThunk());
 		localStorage.removeItem('token');
+		dispatch(logoutThunk());
 		navigate('/login');
 	};
+
+	useEffect(() => {
+		dispatch(currentUserThunk());
+	}, [dispatch]);
 
 	return (
 		<StyledHeader>

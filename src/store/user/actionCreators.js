@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from './actionTypes';
+import { CURRENT_USER, LOGIN, LOGOUT } from './actionTypes';
 
 export const login = ({ token, email, name, isAuth, role }) => ({
 	type: LOGIN,
@@ -13,4 +13,9 @@ export const login = ({ token, email, name, isAuth, role }) => ({
 
 export const logout = () => ({
 	type: LOGOUT,
+});
+
+export const currentUser = (user) => ({
+	type: CURRENT_USER,
+	payload: user,
 });

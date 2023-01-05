@@ -6,7 +6,7 @@ import { selectUser } from '../../store/user/selectors';
 
 export const PrivateRoute = ({ children, redirectTo }) => {
 	const { role } = useSelector(selectUser);
-	return role === 'ADMIN' ? children : <Navigate replace to={redirectTo} />;
+	return role === 'admin' ? children : <Navigate replace to={redirectTo} />;
 };
 
 PrivateRoute.propTypes = {

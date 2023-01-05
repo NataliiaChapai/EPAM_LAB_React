@@ -1,5 +1,5 @@
-import { apiLogin, apiLogout } from '../../services';
-import { login, logout } from './actionCreators';
+import { apiLogin, apiLogout, apiUser } from '../../services';
+import { currentUser, login, logout } from './actionCreators';
 
 export const loginThunk = ({ email, password }) => {
 	return (dispatch) => {
@@ -9,7 +9,7 @@ export const loginThunk = ({ email, password }) => {
 				email: response.user.email,
 				name: response.user.name,
 				isAuth: true,
-				role: response.user.email === 'admin@email.com' ? 'ADMIN' : 'USER',
+				role: response.user.email === 'admin@email.com' ? 'admin' : 'user',
 			};
 			return dispatch(login(payload));
 		});
@@ -19,5 +19,18 @@ export const loginThunk = ({ email, password }) => {
 export const logoutThunk = () => {
 	return (dispatch) => {
 		apiLogout().then(() => dispatch(logout()));
+	};
+};
+
+export const currentUserThunk = () => {
+	return (dispatch) => {
+		apiUser().then((response) => {
+			const payload = {
+				email: response.email,
+				name: response.name,
+				role: response.role,
+			};
+			return dispatch(currentUser(payload));
+		});
 	};
 };

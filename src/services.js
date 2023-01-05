@@ -58,3 +58,9 @@ export const apiCourseInfo = (courseId) =>
 		.get(`/courses/${courseId}`)
 		.then(({ data: { result } }) => result)
 		.catch(({ message }) => console.log(message));
+
+export const apiUser = () =>
+	axios
+		.get('/users/me')
+		.then(({ data: { result } }) => result)
+		.catch(({ message }) => console.log(message));
